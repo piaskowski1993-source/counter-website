@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CO.UNTER</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    a { color: #fff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── LAYOUT ── */
+    .section {
+      padding: 80px 48px;
+      border-bottom: 1px solid #222;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-dark {
+      background: #111;
+      max-width: none;
+      border-bottom: 1px solid #222;
+    }
+
+    .section-dark .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    /* ── HEADER ── */
+    #header {
+      padding: 100px 48px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+      border-bottom: 1px solid #222;
+    }
+
+    .site-title {
+      font-size: clamp(48px, 10vw, 96px);
+      font-weight: normal;
+      letter-spacing: 0.15em;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .site-tagline {
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      color: #aaa;
+    }
+
+    /* ── STORE BUTTONS ── */
+    .store-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+
+    .store-btn {
+      display: inline-block;
+      border: 1px solid #fff;
+      padding: 14px 28px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #000;
+      cursor: pointer;
+    }
+
+    .store-btn:hover {
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: #555;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: 18px;
+      letter-spacing: 0.2em;
+      font-weight: normal;
+      margin-bottom: 48px;
+      text-transform: uppercase;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps { list-style: none; }
+
+    .step {
+      display: flex;
+      gap: 32px;
+      padding: 24px 0;
+      border-top: 1px solid #222;
+    }
+
+    .step:last-child { border-bottom: 1px solid #222; }
+
+    .step-num {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #555;
+      min-width: 24px;
+      padding-top: 2px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .step-text strong {
+      font-weight: normal;
+      color: #fff;
+      display: block;
+      letter-spacing: 0.15em;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-text span { color: #888; font-size: 13px; }
+
+    /* ── GRID ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: #222;
+      border: 1px solid #222;
+    }
+
+    .photo-card {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #111;
+    }
+
+    .photo-card-info {
+      padding: 12px;
+      border-top: 1px solid #222;
+    }
+
+    .photo-card-username {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .photo-card-date {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    /* ── HALL OF FRAMES ── */
+    .hof-card {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hof-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #111;
+    }
+
+    .hof-card-info {
+      padding: 12px;
+      border-top: 1px solid #222;
+    }
+
+    .hof-username {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .hof-month {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .hof-desc {
+      font-size: 11px;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    /* ── CORRESPONDENCE ── */
+    .correspondence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .correspondence-item {
+      border: 1px solid #222;
+    }
+
+    .correspondence-item img {
+      width: 100%;
+      display: block;
+      background: #111;
+    }
+
+    .correspondence-caption {
+      padding: 12px 16px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: #555;
+      border-top: 1px solid #222;
+      text-transform: uppercase;
+    }
+
+    /* ── STATUS TEXT ── */
+    .status-text {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: #555;
+      text-transform: uppercase;
+      padding: 40px 0;
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      padding: 48px;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #555;
+    }
+
+    .footer-contact {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #555;
+    }
+
+    .footer-contact a { color: #555; }
+    .footer-contact a:hover { color: #fff; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .section, #header { padding: 60px 24px; }
+      .section-dark .section-inner { padding: 60px 24px; }
+      #footer { padding: 40px 24px; }
+      .photo-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <h1 class="site-title">CO.UNTER</h1>
+    <p class="site-tagline">A DAILY PHOTOGRAPHY COMPETITION</p>
+    <div class="store-buttons">
+      <a href="#" class="store-btn">DOWNLOAD ON APP STORE</a>
+      <a href="#" class="store-btn">GET IT ON GOOGLE PLAY</a>
+    </div>
+  </header>
+
+  <!-- HOW IT WORKS -->
+  <div class="section-dark">
+    <div class="section-inner">
+      <p class="section-label">HOW IT WORKS</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num">01</span>
+          <div class="step-text">
+            <strong>PAY ONCE.</strong>
+            <span>One-time purchase. No subscription. No recurring fees.</span>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">02</span>
+          <div class="step-text">
+            <strong>JOIN A COHORT.</strong>
+            <span>You are assigned to a group. The cap is 10,000 seats. Ever.</span>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">03</span>
+          <div class="step-text">
+            <strong>SUBMIT ONE PHOTO PER DAY.</strong>
+            <span>One entry. No editing after submission. No second chances.</span>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">04</span>
+          <div class="step-text">
+            <strong>THE OWNER PICKS THE WINNER.</strong>
+            <span>Every day, one photo wins. No algorithm. No votes.</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- DAILY WINNERS -->
+  <section class="section">
+    <p class="section-label">RECENT WINNERS</p>
+    <h2 class="section-title">DAILY WINNERS</h2>
+    <div id="daily-winners-container">
+      <p class="status-text">LOADING...</p>
+    </div>
+  </section>
+
+  <!-- MONTHLY WINNERS -->
+  <div class="section-dark">
+    <div class="section-inner">
+      <p class="section-label">MONTHLY</p>
+      <h2 class="section-title">MONTHLY WINNERS</h2>
+      <div id="monthly-winners-container">
+        <p class="status-text">LOADING...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HALL OF FRAMES -->
+  <section class="section">
+    <p class="section-label">PERMANENT RECORD</p>
+    <h2 class="section-title">HALL OF FRAMES</h2>
+    <div id="hof-container">
+      <p class="status-text">LOADING...</p>
+    </div>
+  </section>
+
+  <!-- CORRESPONDENCE -->
+  <div class="section-dark">
+    <div class="section-inner">
+      <p class="section-label">FROM THE OWNER</p>
+      <h2 class="section-title">CORRESPONDENCE</h2>
+      <div id="correspondence-container">
+        <p class="status-text">LOADING...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <span class="footer-copy">CO.UNTER &copy; 2026</span>
+    <span class="footer-contact"><a href="mailto:mileniallane@gmail.com">CONTACT</a></span>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://yfwddzvaeghgbzziyzzi.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlmd2RkenZhZWdoZ2J6eml5enppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MDUyOTIsImV4cCI6MjA5MjM4MTI5Mn0.Tdcuisy8-Po5DQguvGmqKBPWDZ07TZaohfxQYBI40_E';
+    const STORAGE_BASE = SUPABASE_URL + '/storage/v1/object/public/submissions/';
+
+    const headers = {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+    };
+
+    async function sbGet(path) {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, { headers });
+      if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+      return res.json();
+    }
+
+    async function sbRpc(fn, params) {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + fn, {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
+      if (!res.ok) throw new Error('RPC failed: ' + res.status);
+      return res.json();
+    }
+
+    async function fetchUsernames(userIds) {
+      if (!userIds.length) return {};
+      try {
+        const rows = await sbRpc('get_usernames_by_ids', { user_ids: userIds });
+        const map = {};
+        (rows || []).forEach(r => { map[r.id] = r.username; });
+        return map;
+      } catch {
+        return {};
+      }
+    }
+
+    function photoUrl(path) {
+      return STORAGE_BASE + path;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+    }
+
+    function monthLabel(winMonth) {
+      if (!winMonth) return '';
+      // win_month is e.g. "2026-04" or a date string
+      const parts = winMonth.split('-');
+      if (parts.length >= 2) {
+        const d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long' }).toUpperCase();
+      }
+      return winMonth.toUpperCase();
+    }
+
+    // DAILY WINNERS
+    async function loadDailyWinners() {
+      const container = document.getElementById('daily-winners-container');
+      try {
+        const rows = await sbGet('daily_winners?select=user_id,photo_path,challenge_date&order=challenge_date.desc&limit=10');
+        if (!rows || rows.length === 0) {
+          container.innerHTML = '<p class="status-text">NO ENTRIES YET</p>';
+          return;
+        }
+        const userIds = [...new Set(rows.map(r => r.user_id))];
+        const usernameMap = await fetchUsernames(userIds);
+
+        const grid = document.createElement('div');
+        grid.className = 'photo-grid';
+        rows.forEach(row => {
+          const card = document.createElement('div');
+          card.className = 'photo-card';
+          const username = usernameMap[row.user_id] || '—';
+          card.innerHTML = `
+            <img src="${photoUrl(row.photo_path)}" alt="${username}" loading="lazy">
+            <div class="photo-card-info">
+              <div class="photo-card-username">${username}</div>
+              <div class="photo-card-date">${formatDate(row.challenge_date)}</div>
+            </div>`;
+          grid.appendChild(card);
+        });
+        container.innerHTML = '';
+        container.appendChild(grid);
+      } catch (e) {
+        container.innerHTML = '<p class="status-text">FAILED TO LOAD</p>';
+      }
+    }
+
+    // MONTHLY WINNERS
+    async function loadMonthlyWinners() {
+      const container = document.getElementById('monthly-winners-container');
+      try {
+        const rows = await sbGet('monthly_winners?select=user_id,photo_path,win_month&order=win_month.desc&limit=6');
+        if (!rows || rows.length === 0) {
+          container.innerHTML = '<p class="status-text">NO ENTRIES YET</p>';
+          return;
+        }
+        const userIds = [...new Set(rows.map(r => r.user_id))];
+        const usernameMap = await fetchUsernames(userIds);
+
+        const grid = document.createElement('div');
+        grid.className = 'photo-grid';
+        rows.forEach(row => {
+          const card = document.createElement('div');
+          card.className = 'photo-card';
+          const username = usernameMap[row.user_id] || '—';
+          card.innerHTML = `
+            <img src="${photoUrl(row.photo_path)}" alt="${username}" loading="lazy">
+            <div class="photo-card-info">
+              <div class="photo-card-username">${username}</div>
+              <div class="photo-card-date">${monthLabel(row.win_month)}</div>
+            </div>`;
+          grid.appendChild(card);
+        });
+        container.innerHTML = '';
+        container.appendChild(grid);
+      } catch (e) {
+        container.innerHTML = '<p class="status-text">FAILED TO LOAD</p>';
+      }
+    }
+
+    // HALL OF FRAMES
+    async function loadHallOfFrames() {
+      const container = document.getElementById('hof-container');
+      try {
+        const rows = await sbGet('hall_of_frames?select=username,photo_path,description,win_month&approved=eq.true&order=submitted_at.desc');
+        if (!rows || rows.length === 0) {
+          container.innerHTML = '<p class="status-text">NO ENTRIES YET</p>';
+          return;
+        }
+        const grid = document.createElement('div');
+        grid.className = 'photo-grid';
+        rows.forEach(row => {
+          const card = document.createElement('div');
+          card.className = 'hof-card';
+          card.innerHTML = `
+            <img src="${photoUrl(row.photo_path)}" alt="${row.username}" loading="lazy">
+            <div class="hof-card-info">
+              <div class="hof-username">${row.username}</div>
+              <div class="hof-month">${monthLabel(row.win_month)}</div>
+              <div class="hof-desc">${row.description}</div>
+            </div>`;
+          grid.appendChild(card);
+        });
+        container.innerHTML = '';
+        container.appendChild(grid);
+      } catch (e) {
+        container.innerHTML = '<p class="status-text">FAILED TO LOAD</p>';
+      }
+    }
+
+    // CORRESPONDENCE
+    async function loadCorrespondence() {
+      const container = document.getElementById('correspondence-container');
+      try {
+        const rows = await sbGet('correspondence?select=screenshot_url,year,month,posted_at&order=posted_at.desc');
+        if (!rows || rows.length === 0) {
+          container.innerHTML = '<p class="status-text">NO ENTRIES YET</p>';
+          return;
+        }
+        const list = document.createElement('div');
+        list.className = 'correspondence-list';
+        rows.forEach(row => {
+          const item = document.createElement('div');
+          item.className = 'correspondence-item';
+          const label = row.year && row.month
+            ? new Date(row.year, row.month - 1, 1).toLocaleDateString('en-US', { year: 'numeric', month: 'long' }).toUpperCase()
+            : '';
+          item.innerHTML = `
+            <img src="${row.screenshot_url}" alt="${label}" loading="lazy">
+            ${label ? `<div class="correspondence-caption">${label}</div>` : ''}`;
+          list.appendChild(item);
+        });
+        container.innerHTML = '';
+        container.appendChild(list);
+      } catch (e) {
+        container.innerHTML = '<p class="status-text">FAILED TO LOAD</p>';
+      }
+    }
+
+    loadDailyWinners();
+    loadMonthlyWinners();
+    loadHallOfFrames();
+    loadCorrespondence();
+  </script>
+</body>
+</html>
