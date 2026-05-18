@@ -467,7 +467,7 @@
           card.className = 'photo-card';
           const username = usernameMap[row.user_id] || '—';
           card.innerHTML = `
-            <img src="${photoUrl(row.photo_path)}" alt="${username}" loading="lazy">
+            <img src="${STORAGE_BASE + row.photo_path}" alt="${username}" loading="lazy">
             <div class="photo-card-info">
               <div class="photo-card-username">${username}</div>
               <div class="photo-card-date">${formatDate(row.challenge_date)}</div>
@@ -500,7 +500,7 @@
           card.className = 'photo-card';
           const username = usernameMap[row.user_id] || '—';
           card.innerHTML = `
-            <img src="${photoUrl(row.photo_path)}" alt="${username}" loading="lazy">
+            <img src="${STORAGE_BASE + row.photo_path}" alt="${username}" loading="lazy">
             <div class="photo-card-info">
               <div class="photo-card-username">${username}</div>
               <div class="photo-card-date">${monthLabel(row.win_month)}</div>
